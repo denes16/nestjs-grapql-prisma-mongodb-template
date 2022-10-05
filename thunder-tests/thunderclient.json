@@ -1,0 +1,113 @@
+[
+  {
+    "_id": "801decb1-4b0b-470e-b53c-0960b9e81d73",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "SignUp",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-10-05T02:49:23.593Z",
+    "modified": "2022-10-05T02:49:29.804Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
+        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "cd8744cc-0f11-4202-b322-a96330831838",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "SignIn",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-10-05T02:49:23.594Z",
+    "modified": "2022-10-05T02:58:49.423Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+        "variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"Password123\"\n  }\n}"
+      }
+    },
+    "tests": [
+      {
+        "type": "set-env-var",
+        "custom": "json.data.signIn.accessToken",
+        "action": "setto",
+        "value": "{{accessToken, local}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.data.signIn.refreshToken",
+        "action": "setto",
+        "value": "{{refreshToken, local}}"
+      },
+      {
+        "type": "set-env-var",
+        "custom": "json.data.signIn.user.id",
+        "action": "setto",
+        "value": "{{currentUserId, local}}"
+      }
+    ]
+  },
+  {
+    "_id": "e98d579a-6703-48b3-8558-da63d730edce",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Refresh Access Token",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-05T02:49:23.595Z",
+    "modified": "2022-10-05T02:49:23.595Z",
+    "headers": [],
+    "body": {
+      "type": "graphql",
+      "graphql": {
+        "query": "mutation RefreshAccessToken {\n  refreshAccessToken {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+        "variables": ""
+      }
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{refreshToken}}"
+    }
+  },
+  {
+    "_id": "d94980eb-541c-4aa2-9f74-58cd4100bf30",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "7ff2f477-1ab9-4c71-a48f-1f3eb766610d",
+    "name": "Get User By Id",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-10-05T02:49:23.596Z",
+    "modified": "2022-10-05T02:55:22.367Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query User($userId: ID!) {\n  user(id: $userId) {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}",
+        "variables": "{\n  \"userId\": \"{{currentUserId}}\"\n}"
+      }
+    },
+    "tests": []
+  }
+]

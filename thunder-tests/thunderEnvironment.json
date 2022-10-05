@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "866c7f04-94b1-42a8-9469-0a1ccba69ae9",
+    "name": "(Global Env)",
+    "default": false,
+    "global": true,
+    "sortNum": -2,
+    "created": "2022-10-05T02:47:55.561Z",
+    "modified": "2022-10-05T02:51:09.858Z",
+    "data": [
+      {
+        "name": "graphqlUrl",
+        "value": "http://localhost:3000/graphql"
+      }
+    ]
+  },
+  {
+    "_id": "a60f2cec-8bf2-4731-8050-4dfe4244291c",
+    "name": "(Local Env)",
+    "default": false,
+    "global": true,
+    "local": true,
+    "sortNum": -1,
+    "created": "2022-10-05T02:51:32.695Z",
+    "modified": "2022-10-05T02:51:32.695Z",
+    "data": []
+  }
+]

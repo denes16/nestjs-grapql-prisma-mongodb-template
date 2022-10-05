@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { CurrentUser } from '../auth/types/current-user.type';
@@ -28,7 +32,7 @@ export class UsersService {
       throw new NotFoundException();
     }
     if (!currentUser.ability.can(AbilityAction.Read, user)) {
-      throw new NotFoundException();
+      throw new ForbiddenException();
     }
     return user;
   }

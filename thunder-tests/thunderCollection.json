@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "colName": "Requests",
+    "created": "2022-10-05T02:49:23.591Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "f04e2325-428a-4a0d-902a-1e109b54236c",
+        "name": "Auth",
+        "containerId": "",
+        "created": "2022-10-05T02:49:23.592Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "7ff2f477-1ab9-4c71-a48f-1f3eb766610d",
+        "name": "Users",
+        "containerId": "",
+        "created": "2022-10-05T02:49:23.593Z",
+        "sortNum": 20000
+      }
+    ],
+    "settings": {
+      "auth": {
+        "type": "bearer",
+        "bearer": "{{accessToken}}"
+      }
+    }
+  }
+]
