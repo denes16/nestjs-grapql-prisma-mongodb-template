@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args, Int, ID } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
-import { User } from 'src/@generated/user/user.model';
+import { User } from '../../@generated/user/user.model';
 import { GetCurrentUser } from '../auth/decorators/get-current-user.decorator';
 import { CurrentUser } from '../auth/types/current-user.type';
 
