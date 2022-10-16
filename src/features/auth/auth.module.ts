@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { JwtAccessStrategy } from './strategies/jwt-access.strategy';
 import { CaslAbilityFactoryService } from './casl-ability-factory.service';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   providers: [
@@ -14,7 +14,8 @@ import { ConfigModule } from '@nestjs/config';
     JwtAccessStrategy,
     JwtRefreshStrategy,
     CaslAbilityFactoryService,
+    ConfigService,
   ],
-  imports: [JwtModule.register({}), ConfigModule],
+  imports: [JwtModule.register({})],
 })
 export class AuthModule {}
