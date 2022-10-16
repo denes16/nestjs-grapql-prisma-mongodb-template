@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CaslAbilityFactoryService } from './casl-ability-factory.service';
+import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
 
 describe('CaslAbilityFactoryService', () => {
   let service: CaslAbilityFactoryService;
