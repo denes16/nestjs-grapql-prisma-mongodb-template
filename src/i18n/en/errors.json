@@ -1,4 +1,5 @@
 {
   "emailAlreadyExists": "Email already exists",
-  "badCredentials": "Email or password is incorrect"
+  "badCredentials": "Email or password is incorrect",
+  "userNotFound": "userNotFound"
 }

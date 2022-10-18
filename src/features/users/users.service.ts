@@ -37,8 +37,22 @@ export class UsersService {
     return user;
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  async update(updateUserInput: UpdateUserInput, currentUser: CurrentUser) {
+    const user = await this.findOne(updateUserInput.id, currentUser);
+    if (!user) {
+      throw new NotFoundException('errors.userNotFound');
+    }
+    if (!currentUser) {
+      throw new ForbiddenException();
+    }
+    return await this.prismaService.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        ...updateUserInput,
+      },
+    });
   }
 
   remove(id: number) {
