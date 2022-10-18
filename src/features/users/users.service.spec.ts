@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { PrismaService } from '../../core/services/prisma/prisma.service';
 import { CurrentUserMock } from '../../common/mocks/current-user.mock';
+import { UserMock } from '../../common/mocks/user.mock';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -31,15 +32,19 @@ describe('UsersService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should call prismaService.findUnique on findOne', () => {
-    const findOneSpy = jest.spyOn(prismaService.user, 'findUnique');
-    service.findOne('1', CurrentUserMock);
-    expect(findOneSpy).toBeCalledWith('1', CurrentUserMock);
+  it('should call prismaService.findUnique on findOne', async () => {
+    const findOneSpy = jest
+      .spyOn(prismaService.user, 'findUnique')
+      .mockResolvedValue(UserMock);
+    const result = await service.findOne('1', CurrentUserMock);
+    expect(findOneSpy).toBeCalledTimes(1);
+    expect(result).toBe(UserMock);
   });
 
   it('should call prismaService.update on update', async () => {
+    jest.spyOn(prismaService.user, 'findUnique').mockResolvedValue(UserMock);
     const updateSpy = jest.spyOn(prismaService.user, 'update');
-    const data = { id: '1', firtsName: 'tania', lastName: 'mijangos' };
+    const data = { id: '1', firstName: 'tania', lastName: 'mijangos' };
     await service.update(data, CurrentUserMock);
     expect(updateSpy).toBeCalledTimes(1);
   });
