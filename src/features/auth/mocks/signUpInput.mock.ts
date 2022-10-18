@@ -1,4 +1,4 @@
-import { SignUpInput } from '../../dto/sign-up.input';
+import { SignUpInput } from '../dto/sign-up.input';
 
 export const SignUpInputMock: SignUpInput = {
   firstName: 'Developer',

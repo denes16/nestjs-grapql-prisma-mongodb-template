@@ -8,12 +8,12 @@ import { SignUpInput } from './dto/sign-up.input';
 import { compare, hash } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '@prisma/client';
-import { AccessToken, AccessTokenConfig } from './config/access-token-config';
+import { GetAccessTokenConfig } from './config/access-token-config';
 import { AuthResponse } from './models/auth-response.model';
-import { RefreshToken, RefreshTokenConfig } from './config/refresh-token-config';
 import { SignInInput } from './dto/sign-in.input';
 import { CurrentUser } from './types/current-user.type';
 import { ConfigService } from '@nestjs/config';
+import { GetRefreshTokenConfig } from './config/refresh-token-config';
 
 @Injectable()
 export class AuthService {
@@ -89,16 +89,16 @@ export class AuthService {
     } as User;
   }
   async buildAccessToken(user: User): Promise<string> {
-    return this.jwtService.sign(this.removeFieldsFromUserAndJwtPayload(user), {
-      secret: this.configService.get(AccessToken.Secret),
-      expiresIn: this.configService.get(AccessToken.ExpiresIn),
-    });
+    return this.jwtService.sign(
+      this.removeFieldsFromUserAndJwtPayload(user),
+      GetAccessTokenConfig(this.configService),
+    );
   }
   async buildRefreshToken(user: User): Promise<string> {
-    return this.jwtService.sign(this.removeFieldsFromUserAndJwtPayload(user), {
-      secret: this.configService.get(RefreshToken.Secret),
-      expiresIn: this.configService.get(RefreshToken.ExpiresIn),
-    });
+    return this.jwtService.sign(
+      this.removeFieldsFromUserAndJwtPayload(user),
+      GetRefreshTokenConfig(this.configService),
+    );
   }
   private async validatePassword(
     user: User,

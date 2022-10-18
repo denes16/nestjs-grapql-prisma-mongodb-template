@@ -1,12 +1,12 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
-import { AccessToken, AccessTokenConfig } from '../config/access-token-config';
 import { User } from '@prisma/client';
 import { CurrentUser } from '../types/current-user.type';
 import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
 import { accessibleBy } from '@casl/prisma';
 import { ConfigService } from '@nestjs/config';
+import { GetAccessTokenConfig } from '../config/access-token-config';
 
 @Injectable()
 export class JwtAccessStrategy extends PassportStrategy(
@@ -20,7 +20,7 @@ export class JwtAccessStrategy extends PassportStrategy(
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: configService.get(AccessToken.Secret),
+      secretOrKey: GetAccessTokenConfig(configService).secret,
     });
   }
 
