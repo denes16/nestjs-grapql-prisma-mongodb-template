@@ -10,6 +10,7 @@ describe('UsersResolver', () => {
   beforeEach(async () => {
     usersService = {
       findOne: jest.fn() as any,
+      update: jest.fn() as any,
     } as UsersService;
     const module: TestingModule = await Test.createTestingModule({
       providers: [

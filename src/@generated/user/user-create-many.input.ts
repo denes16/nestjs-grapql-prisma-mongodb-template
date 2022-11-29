@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
+import { AuthProvider } from '../prisma/auth-provider.enum';
 
 @InputType()
 export class UserCreateManyInput {
@@ -34,4 +35,10 @@ export class UserCreateManyInput {
 
     @HideField()
     modelName?: string;
+
+    @HideField()
+    authProvider?: keyof typeof AuthProvider;
+
+    @HideField()
+    authProviderId?: string;
 }

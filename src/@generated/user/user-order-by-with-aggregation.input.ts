@@ -39,6 +39,12 @@ export class UserOrderByWithAggregationInput {
     @HideField()
     modelName?: keyof typeof SortOrder;
 
+    @HideField()
+    authProvider?: keyof typeof SortOrder;
+
+    @HideField()
+    authProviderId?: keyof typeof SortOrder;
+
     @Field(() => UserCountOrderByAggregateInput, {nullable:true})
     _count?: UserCountOrderByAggregateInput;
 

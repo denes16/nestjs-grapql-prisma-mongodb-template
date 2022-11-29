@@ -5,6 +5,7 @@ import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-str
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { HideField } from '@nestjs/graphql';
+import { EnumAuthProviderFieldUpdateOperationsInput } from '../prisma/enum-auth-provider-field-update-operations.input';
 
 @InputType()
 export class UserUncheckedUpdateManyInput {
@@ -35,4 +36,10 @@ export class UserUncheckedUpdateManyInput {
 
     @HideField()
     modelName?: StringFieldUpdateOperationsInput;
+
+    @HideField()
+    authProvider?: EnumAuthProviderFieldUpdateOperationsInput;
+
+    @HideField()
+    authProviderId?: NullableStringFieldUpdateOperationsInput;
 }

@@ -5,6 +5,7 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { HideField } from '@nestjs/graphql';
+import { EnumAuthProviderFilter } from '../prisma/enum-auth-provider-filter.input';
 
 @InputType()
 export class UserWhereInput {
@@ -47,4 +48,10 @@ export class UserWhereInput {
 
     @HideField()
     modelName?: StringFilter;
+
+    @HideField()
+    authProvider?: EnumAuthProviderFilter;
+
+    @HideField()
+    authProviderId?: StringNullableFilter;
 }

@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
+import { AuthProvider } from '../prisma/auth-provider.enum';
 
 @ObjectType()
 export class User {
@@ -35,4 +36,10 @@ export class User {
 
     @HideField()
     modelName!: string;
+
+    @HideField()
+    authProvider!: keyof typeof AuthProvider;
+
+    @HideField()
+    authProviderId!: string | null;
 }

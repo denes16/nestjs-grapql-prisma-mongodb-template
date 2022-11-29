@@ -34,4 +34,10 @@ export class UserMinAggregateInput {
 
     @HideField()
     modelName?: true;
+
+    @HideField()
+    authProvider?: true;
+
+    @HideField()
+    authProviderId?: true;
 }

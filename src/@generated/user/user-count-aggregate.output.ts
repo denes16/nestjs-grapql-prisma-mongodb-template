@@ -36,6 +36,12 @@ export class UserCountAggregate {
     @HideField()
     modelName!: number;
 
+    @HideField()
+    authProvider!: number;
+
+    @HideField()
+    authProviderId!: number;
+
     @Field(() => Int, {nullable:false})
     _all!: number;
 }

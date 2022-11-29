@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
+import { AuthProvider } from '../prisma/auth-provider.enum';
 import { UserCountAggregate } from './user-count-aggregate.output';
 import { UserMinAggregate } from './user-min-aggregate.output';
 import { UserMaxAggregate } from './user-max-aggregate.output';
@@ -37,6 +38,12 @@ export class UserGroupBy {
 
     @HideField()
     modelName!: string;
+
+    @HideField()
+    authProvider!: keyof typeof AuthProvider;
+
+    @HideField()
+    authProviderId?: string;
 
     @Field(() => UserCountAggregate, {nullable:true})
     _count?: UserCountAggregate;

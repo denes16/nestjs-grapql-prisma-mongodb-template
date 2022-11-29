@@ -5,6 +5,7 @@ import { StringNullableWithAggregatesFilter } from '../prisma/string-nullable-wi
 import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
 import { HideField } from '@nestjs/graphql';
+import { EnumAuthProviderWithAggregatesFilter } from '../prisma/enum-auth-provider-with-aggregates-filter.input';
 
 @InputType()
 export class UserScalarWhereWithAggregatesInput {
@@ -47,4 +48,10 @@ export class UserScalarWhereWithAggregatesInput {
 
     @HideField()
     modelName?: StringWithAggregatesFilter;
+
+    @HideField()
+    authProvider?: EnumAuthProviderWithAggregatesFilter;
+
+    @HideField()
+    authProviderId?: StringNullableWithAggregatesFilter;
 }

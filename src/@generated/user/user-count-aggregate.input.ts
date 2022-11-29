@@ -35,6 +35,12 @@ export class UserCountAggregateInput {
     @HideField()
     modelName?: true;
 
+    @HideField()
+    authProvider?: true;
+
+    @HideField()
+    authProviderId?: true;
+
     @Field(() => Boolean, {nullable:true})
     _all?: true;
 }

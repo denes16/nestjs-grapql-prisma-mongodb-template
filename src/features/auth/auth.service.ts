@@ -7,7 +7,7 @@ import { PrismaService } from '../../core/services/prisma/prisma.service';
 import { SignUpInput } from './dto/sign-up.input';
 import { compare, hash } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
-import { User } from '@prisma/client';
+import { User, AuthProvider } from '@prisma/client';
 import { GetAccessTokenConfig } from './config/access-token-config';
 import { AuthResponse } from './models/auth-response.model';
 import { SignInInput } from './dto/sign-in.input';
@@ -23,9 +23,10 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
   async signUp(signUpInput: SignUpInput): Promise<AuthResponse> {
-    const existingUser = await this.prismaService.user.findUnique({
+    const existingUser = await this.prismaService.user.findFirst({
       where: {
         email: signUpInput.email,
+        authProvider: AuthProvider.LOCAL,
       },
       select: {
         id: true,
@@ -49,9 +50,10 @@ export class AuthService {
     };
   }
   async signIn(signInInput: SignInInput): Promise<AuthResponse> {
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.prismaService.user.findFirst({
       where: {
         email: signInInput.email,
+        authProvider: AuthProvider.LOCAL,
       },
     });
     if (!user) {
