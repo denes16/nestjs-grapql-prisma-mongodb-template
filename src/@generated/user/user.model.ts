@@ -24,6 +24,9 @@ export class User {
     @HideField()
     password!: string | null;
 
+    @Field(() => String, {nullable:true})
+    newPasswordToken!: string | null;
+
     @Field(() => Date, {nullable:false})
     createdAt!: Date;
 

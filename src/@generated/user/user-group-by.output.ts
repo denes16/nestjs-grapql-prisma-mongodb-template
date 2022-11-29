@@ -26,6 +26,9 @@ export class UserGroupBy {
     @HideField()
     password?: string;
 
+    @Field(() => String, {nullable:true})
+    newPasswordToken?: string;
+
     @Field(() => Date, {nullable:false})
     createdAt!: Date | string;
 

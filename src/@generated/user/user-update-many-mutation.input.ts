@@ -24,6 +24,9 @@ export class UserUpdateManyMutationInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     password?: NullableStringFieldUpdateOperationsInput;
 
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    newPasswordToken?: NullableStringFieldUpdateOperationsInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     createdAt?: DateTimeFieldUpdateOperationsInput;
 

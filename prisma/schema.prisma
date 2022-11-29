@@ -23,6 +23,7 @@ model User {
   language  String   @default("en")
   /// @HideField()
   password  String?
+  newPasswordToken String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)

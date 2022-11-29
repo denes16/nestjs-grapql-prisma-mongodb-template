@@ -23,6 +23,9 @@ export class UserUncheckedCreateInput {
     @Field(() => String, {nullable:true})
     password?: string;
 
+    @Field(() => String, {nullable:true})
+    newPasswordToken?: string;
+
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 

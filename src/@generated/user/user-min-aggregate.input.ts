@@ -24,6 +24,9 @@ export class UserMinAggregateInput {
     password?: true;
 
     @Field(() => Boolean, {nullable:true})
+    newPasswordToken?: true;
+
+    @Field(() => Boolean, {nullable:true})
     createdAt?: true;
 
     @Field(() => Boolean, {nullable:true})

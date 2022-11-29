@@ -36,6 +36,9 @@ export class UserWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     password?: StringNullableFilter;
 
+    @Field(() => StringNullableFilter, {nullable:true})
+    newPasswordToken?: StringNullableFilter;
+
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;
 
