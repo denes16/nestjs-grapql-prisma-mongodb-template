@@ -25,7 +25,10 @@ export class UserMaxOrderByAggregateInput {
     password?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
-    newPasswordToken?: keyof typeof SortOrder;
+    resetPasswordToken?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    resetPasswordTokenExpires?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
     createdAt?: keyof typeof SortOrder;

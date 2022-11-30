@@ -8,7 +8,8 @@ type User {
   lastName: String!
   email: String!
   language: String!
-  newPasswordToken: String
+  resetPasswordToken: String
+  resetPasswordTokenExpires: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
   isActive: Boolean!
@@ -26,7 +27,7 @@ type AuthResponse {
 }
 
 type ForgotPasswordResponse {
-  user: User
+  email: String
 }
 
 type Query {
@@ -38,7 +39,7 @@ type Mutation {
   signIn(signInInput: SignInInput!): AuthResponse!
   refreshAccessToken: AuthResponse!
   forgotPassword(forgotPasswordInput: ForgotPasswordInput!): ForgotPasswordResponse!
-  forgotPasswordToken(forgotPasswordTokenInput: ForgotPasswordTokenInput!): ForgotPasswordResponse!
+  verifiedResetPasswordToken(resetPasswordTokenInput: ResetPasswordTokenInput!): ForgotPasswordResponse!
   resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
 }
 
@@ -58,7 +59,7 @@ input ForgotPasswordInput {
   email: String!
 }
 
-input ForgotPasswordTokenInput {
+input ResetPasswordTokenInput {
   token: String!
 }
 

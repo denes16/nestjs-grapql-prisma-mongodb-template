@@ -25,7 +25,10 @@ export class User {
     password!: string | null;
 
     @Field(() => String, {nullable:true})
-    newPasswordToken!: string | null;
+    resetPasswordToken!: string | null;
+
+    @Field(() => Date, {nullable:true})
+    resetPasswordTokenExpires!: Date | null;
 
     @Field(() => Date, {nullable:false})
     createdAt!: Date;

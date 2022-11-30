@@ -24,7 +24,10 @@ export class UserCountAggregateInput {
     password?: true;
 
     @Field(() => Boolean, {nullable:true})
-    newPasswordToken?: true;
+    resetPasswordToken?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    resetPasswordTokenExpires?: true;
 
     @Field(() => Boolean, {nullable:true})
     createdAt?: true;

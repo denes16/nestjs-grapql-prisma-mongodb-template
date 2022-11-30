@@ -18,11 +18,13 @@ import { CurrentUser } from './types/current-user.type';
 import { ConfigService } from '@nestjs/config';
 import { GetRefreshTokenConfig } from './config/refresh-token-config';
 import { ForgotPasswordInput } from './dto/forgot-password.input';
-import { ForgotPasswordTokenInput } from './dto/forgot-password-token.input';
+import { ResetPasswordTokenInput } from './dto/reset-password-token.input';
 import { ResetPasswordInput } from './dto/reset-password.input';
 import { MailerService } from '@nestjs-modules/mailer';
 import { ForgotPasswordResponse } from './models/forgot-password-response.model';
 import { I18nService } from 'nestjs-i18n';
+import * as crypto from 'crypto';
+import * as handlebars from 'handlebars';
 
 @Injectable()
 export class AuthService {
@@ -128,76 +130,88 @@ export class AuthService {
   async forgotPassword(
     forgotPasswordInput: ForgotPasswordInput,
   ): Promise<ForgotPasswordResponse> {
-    const userUpdated = await this.createTokenForgotPassword(
+    const userUpdated = await this.generateResetPasswordToken(
       forgotPasswordInput.email,
     );
-    if (!userUpdated) {
-      return {
-        user: null,
-      };
+    if (userUpdated) {
+      handlebars.registerHelper('t', (key: string) => {
+        return this.i18nService.translate(key, {
+          lang: userUpdated.language,
+        });
+      });
+      await this.mailService.sendMail({
+        to: userUpdated.email,
+        from: this.configService.get('MAIL_FROM'),
+        subject: this.i18nService.translate('common.resetPassword', {
+          lang: userUpdated.language,
+        }),
+        template: 'password-reset',
+        context: {
+          url: `${this.configService.get(
+            'FRONTEND_URL',
+          )}/reset-password?token=${userUpdated.resetPasswordToken}`,
+        },
+      });
     }
-    await this.mailService.sendMail({
-      to: userUpdated.email,
-      from: this.configService.get('MAIL_FROM'),
-      subject: 'Reset your password',
-      template: 'password-reset',
-      context: {
-        url: `${this.configService.get('FRONTEND_URL')}/reset-password?token=${
-          userUpdated.newPasswordToken
-        }`,
-      },
-    });
     return {
-      user: userUpdated,
+      email: null,
     };
   }
 
-  async forgotPasswordToken(
-    forgotPasswordTokenInput: ForgotPasswordTokenInput,
-  ): Promise<{ email }> {
-    try {
-      return this.jwtService.verify(forgotPasswordTokenInput.token, {
-        secret: this.configService.get('ACCESS_TOKEN_SECRET'),
-      });
-    } catch (error) {
-      throw new HttpException('errors.tokenExpired', HttpStatus.UNAUTHORIZED);
-    }
-  }
-
-  private async createTokenForgotPassword(email: string): Promise<any> {
-    const token = this.jwtService.sign(
-      { email },
-      {
-        secret: this.configService.get('ACCESS_TOKEN_SECRET'),
-        expiresIn: '1h',
-      },
-    );
-    const user = await this.prismaService.user.update({
-      where: { email },
-      data: {
-        newPasswordToken: token,
+  async verifiedResetPasswordToken(
+    resetPasswordTokenInput: ResetPasswordTokenInput,
+  ): Promise<ForgotPasswordResponse> {
+    const user = await this.prismaService.user.findUnique({
+      where: {
+        resetPasswordToken: resetPasswordTokenInput.token,
       },
     });
-    if (!token || !user) {
-      throw new InternalServerErrorException('errors.internalServerError');
+    if (!user) {
+      throw new ForbiddenException('errors.invalidToken');
     }
-    return user;
+    if (user.resetPasswordTokenExpires < new Date()) {
+      throw new ForbiddenException('errors.tokenExpired');
+    }
+    return {
+      email: user.email,
+    };
   }
 
-  async resetPassword(resetPasswordInput: ResetPasswordInput): Promise<any> {
-    const { email, ...rest } = await this.forgotPasswordToken({
+  private async generateResetPasswordToken(
+    email: string,
+  ): Promise<User | null> {
+    const token = this.generateToken(70);
+    return await this.prismaService.user.update({
+      where: { email },
+      data: {
+        resetPasswordToken: token,
+        resetPasswordTokenExpires: new Date(Date.now() + 3600000),
+      },
+    });
+  }
+
+  private generateToken(length: number): string {
+    return crypto.randomBytes(length).toString('hex');
+  }
+
+  async resetPassword(
+    resetPasswordInput: ResetPasswordInput,
+  ): Promise<ForgotPasswordResponse> {
+    const { email, ...rest } = await this.verifiedResetPasswordToken({
       token: resetPasswordInput.token,
     });
     const user = await this.prismaService.user.update({
       where: { email },
       data: {
         password: await hash(resetPasswordInput.password, 10),
-        newPasswordToken: null,
+        resetPasswordToken: null,
       },
     });
     if (!user) {
       throw new InternalServerErrorException('errors.internalServerError');
     }
-    return user;
+    return {
+      email: user.email,
+    };
   }
 }

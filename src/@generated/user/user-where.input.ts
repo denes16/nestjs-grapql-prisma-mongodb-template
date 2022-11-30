@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
 import { HideField } from '@nestjs/graphql';
@@ -37,7 +38,10 @@ export class UserWhereInput {
     password?: StringNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
-    newPasswordToken?: StringNullableFilter;
+    resetPasswordToken?: StringNullableFilter;
+
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    resetPasswordTokenExpires?: DateTimeNullableFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     createdAt?: DateTimeFilter;

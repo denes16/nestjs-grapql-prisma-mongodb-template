@@ -2,5 +2,6 @@
   "titleResetPassword": "Ha solicitado restablecer su contraseña",
   "titleTagResetPassword": "Restablecer contraseña",
   "textResetPassword": "Para restablecer su contraseña, haga clic en el siguiente enlace y siga las instrucciones.",
-  "buttonResetPassword": "Restablecer contraseña"
+  "buttonResetPassword": "Restablecer contraseña",
+  "resetPassword": "Restablecer contraseña"
 }

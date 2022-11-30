@@ -10,7 +10,7 @@ import { GetCurrentUser } from './decorators/get-current-user.decorator';
 import { CurrentUser } from './types/current-user.type';
 import { ForgotPasswordInput } from './dto/forgot-password.input';
 import { ForgotPasswordResponse } from './models/forgot-password-response.model';
-import { ForgotPasswordTokenInput } from './dto/forgot-password-token.input';
+import { ResetPasswordTokenInput } from './dto/reset-password-token.input';
 import { ResetPasswordInput } from './dto/reset-password.input';
 
 @Resolver()
@@ -42,11 +42,11 @@ export class AuthResolver {
 
   @AuthenticationNotRequired()
   @Mutation(() => ForgotPasswordResponse)
-  async forgotPasswordToken(
-    @Args('forgotPasswordTokenInput')
-    forgotPasswordTokenInput: ForgotPasswordTokenInput,
+  async verifiedResetPasswordToken(
+    @Args('resetPasswordTokenInput')
+    resetPasswordTokenInput: ResetPasswordTokenInput,
   ) {
-    return this.authService.forgotPasswordToken(forgotPasswordTokenInput);
+    return this.authService.verifiedResetPasswordToken(resetPasswordTokenInput);
   }
 
   @AuthenticationNotRequired()
