@@ -122,5 +122,51 @@
       }
     },
     "tests": []
+  },
+  {
+    "_id": "16ca5435-da3b-4130-9d60-e9c1a3d00884",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Forgot Password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-12-06T02:18:36.598Z",
+    "modified": "2022-12-06T02:30:50.323Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\n  forgotPassword(forgotPasswordInput: $forgotPasswordInput) {\n    email\n  }\n}",
+        "variables": "{\n    \"forgotPasswordInput\": {\n        \"email\": \"email1@email.com\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "de2f5db2-ec6b-4541-be06-53a8afa20030",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Validate token forgot password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-12-06T02:20:12.747Z",
+    "modified": "2022-12-06T02:21:55.031Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\r\n\tverifiedResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\r\n\t\temail\r\n\t}\r\n}",
+        "variables": "{\r\n    \"resetPasswordTokenInput\": {\r\n        \"token\": \"2acf5176ce6c4d0a6a8f98c1609e74ba204bcd2f487fe50aea1b371620b2d2a0301d8bb53599e49b3fa7b2186a95d1ab89889f859ace02bb1636887998e9d62e84accd7ea8f0\"\r\n    }\r\n}"
+      }
+    },
+    "tests": []
   }
 ]

@@ -24,6 +24,12 @@ export class UserCreateInput {
     @Field(() => String, {nullable:true})
     password?: string;
 
+    @Field(() => String, {nullable:true})
+    resetPasswordToken?: string;
+
+    @Field(() => Date, {nullable:true})
+    resetPasswordTokenExpires?: Date | string;
+
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 
