@@ -30,4 +30,16 @@ model User {
   isActive  Boolean  @default(true)
   /// @HideField({ output: true, input: true })
   modelName String   @default("User")
+
+
+  /// @HideField({ output: true, input: true })
+  authProvider AuthProvider @default(LOCAL)
+
+  /// @HideField({ output: true, input: true })
+  authProviderId String?
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
 }

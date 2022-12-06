@@ -12,6 +12,8 @@ export type CurrentUser = {
   id: string;
   user: User;
   ability: AppAbility;
+  authAccessToken?: string;
+  authRefreshToken?: string;
   getAccessibleWhereInput: (
     subject: AppSubjects,
     action?: AbilityAction,

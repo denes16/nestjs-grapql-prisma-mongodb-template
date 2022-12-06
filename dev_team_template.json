@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "b1a7d7cb-d3b0-46b4-b1bd-c0d0a87862bc",
+		"name": "Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13290621"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
+								"variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{graphqlUrl}}",
+							"host": [
+								"{{graphqlUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
+										"variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1343"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53f-tkrpuNNAceoJ6nSl3+uewAc9EZ4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 02:26:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"signUp\": {\n            \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzY1M2VkYzhjMWUwOTU0MTU4NzdkZSIsImZpcnN0TmFtZSI6IkRlbmVzIiwibGFzdE5hbWUiOiJNaWphbmdvcyIsImVtYWlsIjoiZW1haWwxQGVtYWlsLmNvbSIsImxhbmd1YWdlIjoiZW4iLCJwYXNzd29yZCI6IiQyYiQxMCRpdi9vbjIxcjdNTGRkdE9mZ0ZVbUUuSjE3U01lN3JDd0xrT0dpZnI0U3JKU2o4REJnVEppeSIsImNyZWF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc0WiIsInVwZGF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc1WiIsImlzQWN0aXZlIjp0cnVlLCJtb2RlbE5hbWUiOiJVc2VyIiwiaWF0IjoxNjY0NTA0ODEzLCJleHAiOjE2NjQ1MDU3MTN9.Fqin5xNGyRXZmR8fpdDVcJWNGFG2Z9l6kutXVqKdLng\",\n            \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzY1M2VkYzhjMWUwOTU0MTU4NzdkZSIsImZpcnN0TmFtZSI6IkRlbmVzIiwibGFzdE5hbWUiOiJNaWphbmdvcyIsImVtYWlsIjoiZW1haWwxQGVtYWlsLmNvbSIsImxhbmd1YWdlIjoiZW4iLCJwYXNzd29yZCI6IiQyYiQxMCRpdi9vbjIxcjdNTGRkdE9mZ0ZVbUUuSjE3U01lN3JDd0xrT0dpZnI0U3JKU2o4REJnVEppeSIsImNyZWF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc0WiIsInVwZGF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc1WiIsImlzQWN0aXZlIjp0cnVlLCJtb2RlbE5hbWUiOiJVc2VyIiwiaWF0IjoxNjY0NTA0ODEzLCJleHAiOjE2NjUxMDk2MTN9.Unh-uC4YWQsCeRs_D2fbAFjUc6bbGwyeromeoJRLoEI\",\n            \"user\": {\n                \"id\": \"633653edc8c1e095415877de\",\n                \"firstName\": \"Denes\",\n                \"lastName\": \"Mijangos\",\n                \"email\": \"email1@email.com\",\n                \"language\": \"en\",\n                \"createdAt\": \"2022-09-30T02:26:53.474Z\",\n                \"updatedAt\": \"2022-09-30T02:26:53.475Z\",\n                \"isActive\": true\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "Email Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
+										"variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "175"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"af-DIDAX2HujNMMqnQw79LozUXwGHo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 02:27:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"Email already exists\",\n            \"extensions\": {\n                \"code\": \"409\",\n                \"response\": {\n                    \"statusCode\": 409,\n                    \"message\": \"errors.emailAlreadyExists\",\n                    \"error\": \"Conflict\"\n                }\n            }\n        }\n    ],\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "SignIn",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();",
+									"const accessToken = response?.data?.signIn?.accessToken;",
+									"if (accessToken) {",
+									"    pm.environment.set(\"accessToken\", accessToken);",
+									"}",
+									"const refreshToken = response?.data?.signIn?.refreshToken;",
+									"if (accessToken) {",
+									"    pm.environment.set(\"refreshToken\", refreshToken);",
+									"}",
+									"const currentUserId = response?.data?.signIn?.user?.id;",
+									"if(currentUserId) {",
+									"    pm.environment.set(\"currentUserId\", currentUserId);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+								"variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"Password123\"\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{graphqlUrl}}",
+							"host": [
+								"{{graphqlUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+										"variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"Password123\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1343"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"53f-tCCY+9EvapixJMCvOXA24KlX5Nc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 02:29:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"signIn\": {\n            \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzY1M2VkYzhjMWUwOTU0MTU4NzdkZSIsImZpcnN0TmFtZSI6IkRlbmVzIiwibGFzdE5hbWUiOiJNaWphbmdvcyIsImVtYWlsIjoiZW1haWwxQGVtYWlsLmNvbSIsImxhbmd1YWdlIjoiZW4iLCJwYXNzd29yZCI6IiQyYiQxMCRpdi9vbjIxcjdNTGRkdE9mZ0ZVbUUuSjE3U01lN3JDd0xrT0dpZnI0U3JKU2o4REJnVEppeSIsImNyZWF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc0WiIsInVwZGF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc1WiIsImlzQWN0aXZlIjp0cnVlLCJtb2RlbE5hbWUiOiJVc2VyIiwiaWF0IjoxNjY0NTA0OTcxLCJleHAiOjE2NjQ1MDU4NzF9.jgRJ8Q4SQ-dtppyIBA1MLhgik3zFP1_VcghbgnYfeCE\",\n            \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzY1M2VkYzhjMWUwOTU0MTU4NzdkZSIsImZpcnN0TmFtZSI6IkRlbmVzIiwibGFzdE5hbWUiOiJNaWphbmdvcyIsImVtYWlsIjoiZW1haWwxQGVtYWlsLmNvbSIsImxhbmd1YWdlIjoiZW4iLCJwYXNzd29yZCI6IiQyYiQxMCRpdi9vbjIxcjdNTGRkdE9mZ0ZVbUUuSjE3U01lN3JDd0xrT0dpZnI0U3JKU2o4REJnVEppeSIsImNyZWF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc0WiIsInVwZGF0ZWRBdCI6IjIwMjItMDktMzBUMDI6MjY6NTMuNDc1WiIsImlzQWN0aXZlIjp0cnVlLCJtb2RlbE5hbWUiOiJVc2VyIiwiaWF0IjoxNjY0NTA0OTcxLCJleHAiOjE2NjUxMDk3NzF9.cMTR3UjVNqwgrzlcweeJ8suIQo2KvUOyeh7L0DzvJyA\",\n            \"user\": {\n                \"id\": \"633653edc8c1e095415877de\",\n                \"firstName\": \"Denes\",\n                \"lastName\": \"Mijangos\",\n                \"email\": \"email1@email.com\",\n                \"language\": \"en\",\n                \"createdAt\": \"2022-09-30T02:26:53.474Z\",\n                \"updatedAt\": \"2022-09-30T02:26:53.475Z\",\n                \"isActive\": true\n            }\n        }\n    }\n}"
+						},
+						{
+							"name": "Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+										"variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"WrongPassword\"\n  }\n}"
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bc-mmXQqh3LD7DK2tB9IuHcoa+fh9Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 02:30:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"Email or password is incorrect\",\n            \"extensions\": {\n                \"code\": \"FORBIDDEN\",\n                \"response\": {\n                    \"statusCode\": 403,\n                    \"message\": \"errors.badCredentials\",\n                    \"error\": \"Forbidden\"\n                }\n            }\n        }\n    ],\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{refreshToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation RefreshAccessToken {\n  refreshAccessToken {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphqlUrl}}",
+							"host": [
+								"{{graphqlUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation RefreshAccessToken {\n  refreshAccessToken {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-tyW5jIH/TiOmziByT5taWqGYPzw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 03:02:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"Unauthorized\",\n            \"extensions\": {\n                \"code\": \"UNAUTHENTICATED\",\n                \"response\": {\n                    \"statusCode\": 401,\n                    \"message\": \"Unauthorized\"\n                }\n            }\n        }\n    ],\n    \"data\": null\n}"
+						},
+						{
+							"name": "200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation RefreshAccessToken {\n  refreshAccessToken {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "726"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d6-J8UDlhmFmxR3si+tDWBxW5uFX+E\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 03:12:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"refreshAccessToken\": {\n            \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzY1M2VkYzhjMWUwOTU0MTU4NzdkZSIsImZpcnN0TmFtZSI6IkRlbmVzIiwibGFzdE5hbWUiOiJNaWphbmdvcyIsImVtYWlsIjoiZW1haWwxQGVtYWlsLmNvbSIsImxhbmd1YWdlIjoiZW4iLCJjcmVhdGVkQXQiOiIyMDIyLTA5LTMwVDAyOjI2OjUzLjQ3NFoiLCJ1cGRhdGVkQXQiOiIyMDIyLTA5LTMwVDAyOjI2OjUzLjQ3NVoiLCJpc0FjdGl2ZSI6dHJ1ZSwibW9kZWxOYW1lIjoiVXNlciIsImlhdCI6MTY2NDUwNzU1MywiZXhwIjoxNjY0NTA4NDUzfQ.jkSQ22PpvcNSZWdhVPdc1Qf9GgOoZOPZZunr5h95gGk\",\n            \"refreshToken\": null,\n            \"user\": {\n                \"id\": \"633653edc8c1e095415877de\",\n                \"firstName\": \"Denes\",\n                \"lastName\": \"Mijangos\",\n                \"email\": \"email1@email.com\",\n                \"language\": \"en\",\n                \"createdAt\": \"2022-09-30T02:26:53.474Z\",\n                \"updatedAt\": \"2022-09-30T02:26:53.475Z\",\n                \"isActive\": true\n            }\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get User By Id",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query User($userId: ID!) {\n  user(id: $userId) {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}",
+								"variables": "{\n  \"userId\": \"{{currentUserId}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{graphqlUrl}}",
+							"host": [
+								"{{graphqlUrl}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "401",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query User($userId: ID!) {\n  user(id: $userId) {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}",
+										"variables": "{\n  \"userId\": \"{{currentUserId}}\"\n}"
+									}
+								},
+								"url": {
+									"raw": "{{graphqlUrl}}",
+									"host": [
+										"{{graphqlUrl}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "147"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"93-tyW5jIH/TiOmziByT5taWqGYPzw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 30 Sep 2022 02:40:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errors\": [\n        {\n            \"message\": \"Unauthorized\",\n            \"extensions\": {\n                \"code\": \"UNAUTHENTICATED\",\n                \"response\": {\n                    \"statusCode\": 401,\n                    \"message\": \"Unauthorized\"\n                }\n            }\n        }\n    ],\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
