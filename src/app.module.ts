@@ -33,7 +33,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
       introspection: process.env.NODE_ENV === 'development',
     }),
     I18nModule.forRoot({
-      fallbackLanguage: 'es',
+      fallbackLanguage: 'en',
       loaderOptions: {
         path: join(__dirname, '/i18n/'),
         watch: true,
