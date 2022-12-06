@@ -11,7 +11,10 @@ import { getI18nContextFromRequest } from 'nestjs-i18n';
 import { PoliciesGuard } from './policies.guard';
 
 @Injectable()
-export class JwtAccessAuthGuard extends AuthGuard(['jwt-access', 'google']) {
+export class JwtAccessAuthGuard extends AuthGuard([
+  'google-token',
+  'jwt-access',
+]) {
   constructor(
     private reflector: Reflector,
     private policiesGuard: PoliciesGuard,

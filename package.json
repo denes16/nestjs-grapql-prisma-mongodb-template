@@ -42,6 +42,7 @@
     "graphql-ws": "^5.11.2",
     "nestjs-i18n": "^9.2.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-google-token": "^0.1.2",
     "passport-jwt": "^4.0.0",
     "prisma-graphql-type-decimal": "^2.0.4",
     "reflect-metadata": "^0.1.13",
