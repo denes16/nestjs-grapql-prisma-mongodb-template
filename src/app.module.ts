@@ -57,6 +57,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
         defaults: {
           from: '"No Reply" <' + config.get('MAIL_FROM') + '>',
         },
+        preview: true,
         template: {
           dir: join(__dirname, 'templates/mailers'),
           adapter: new HandlebarsAdapter({ t: i18n.hbsHelper }),

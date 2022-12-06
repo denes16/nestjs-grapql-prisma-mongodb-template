@@ -119,7 +119,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-12-06T02:18:36.598Z",
-    "modified": "2022-12-06T02:21:14.597Z",
+    "modified": "2022-12-06T02:30:50.323Z",
     "headers": [],
     "params": [],
     "body": {
@@ -127,8 +127,8 @@
       "raw": "",
       "form": [],
       "graphql": {
-        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\r\n  forgotPassword(forgotPasswordInput: $forgotPasswordInput) {\r\n    email\r\n  }\r\n}",
-        "variables": "{\r\n    \"forgotPasswordInput\": {\r\n        \"email\": \"email1@email.com\"\r\n    }\r\n}"
+        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\n  forgotPassword(forgotPasswordInput: $forgotPasswordInput) {\n    email\n  }\n}",
+        "variables": "{\n    \"forgotPasswordInput\": {\n        \"email\": \"email1@email.com\"\n    }\n}"
       }
     },
     "tests": []
