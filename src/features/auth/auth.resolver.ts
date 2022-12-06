@@ -4,10 +4,14 @@ import { SignUpInput } from './dto/sign-up.input';
 import { AuthService } from './auth.service';
 import { SignInInput } from './dto/sign-in.input';
 import { AuthenticationNotRequired } from './decorators/authentication-not-required';
-import { UseGuards } from '@nestjs/common';
+import { Param, UseGuards } from '@nestjs/common';
 import { JwtRefreshAuthGuard } from './guards/jwt-refresh-auth.guard';
 import { GetCurrentUser } from './decorators/get-current-user.decorator';
 import { CurrentUser } from './types/current-user.type';
+import { ForgotPasswordInput } from './dto/forgot-password.input';
+import { ForgotPasswordResponse } from './models/forgot-password-response.model';
+import { ResetPasswordTokenInput } from './dto/reset-password-token.input';
+import { ResetPasswordInput } from './dto/reset-password.input';
 
 @Resolver()
 export class AuthResolver {
@@ -27,5 +31,29 @@ export class AuthResolver {
   @UseGuards(JwtRefreshAuthGuard)
   async refreshAccessToken(@GetCurrentUser() currentUser: CurrentUser) {
     return this.authService.refreshAccessToken(currentUser);
+  }
+  @AuthenticationNotRequired()
+  @Mutation(() => ForgotPasswordResponse)
+  async forgotPassword(
+    @Args('forgotPasswordInput') forgotPasswordInput: ForgotPasswordInput,
+  ) {
+    return this.authService.forgotPassword(forgotPasswordInput);
+  }
+
+  @AuthenticationNotRequired()
+  @Mutation(() => ForgotPasswordResponse)
+  async verifiedResetPasswordToken(
+    @Args('resetPasswordTokenInput')
+    resetPasswordTokenInput: ResetPasswordTokenInput,
+  ) {
+    return this.authService.verifiedResetPasswordToken(resetPasswordTokenInput);
+  }
+
+  @AuthenticationNotRequired()
+  @Mutation(() => Boolean)
+  async resetPassword(
+    @Args('resetPasswordInput') resetPasswordInput: ResetPasswordInput,
+  ) {
+    return this.authService.resetPassword(resetPasswordInput);
   }
 }
