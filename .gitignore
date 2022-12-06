@@ -38,4 +38,4 @@ lerna-debug.log*
 # Env files
 .env
 
-src/@generated
+src/@generated/*

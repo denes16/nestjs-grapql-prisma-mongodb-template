@@ -155,7 +155,7 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-12-06T02:20:12.747Z",
-    "modified": "2022-12-06T02:21:55.031Z",
+    "modified": "2022-12-06T03:09:17.763Z",
     "headers": [],
     "params": [],
     "body": {
@@ -163,8 +163,8 @@
       "raw": "",
       "form": [],
       "graphql": {
-        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\r\n\tverifiedResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\r\n\t\temail\r\n\t}\r\n}",
-        "variables": "{\r\n    \"resetPasswordTokenInput\": {\r\n        \"token\": \"2acf5176ce6c4d0a6a8f98c1609e74ba204bcd2f487fe50aea1b371620b2d2a0301d8bb53599e49b3fa7b2186a95d1ab89889f859ace02bb1636887998e9d62e84accd7ea8f0\"\r\n    }\r\n}"
+        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\n\tverifiedResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"resetPasswordTokenInput\": {\n        \"token\": \"a78e51eb6b08d98f9b81a3c4886ec40cbde8b1f054983275a8c3ccd4c27d1a0eef21a99bcd6cdcd2f599c3e20d8db6633272f6de82d0bf49c3adbbe3d85aef19b70098ad1fe9\"\n    }\n}"
       }
     },
     "tests": []

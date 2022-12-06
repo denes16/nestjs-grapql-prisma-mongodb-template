@@ -33,7 +33,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
       introspection: process.env.NODE_ENV === 'development',
     }),
     I18nModule.forRoot({
-      fallbackLanguage: 'es',
+      fallbackLanguage: 'en',
       loaderOptions: {
         path: join(__dirname, '/i18n/'),
         watch: true,
@@ -58,6 +58,11 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
           from: '"No Reply" <' + config.get('MAIL_FROM') + '>',
         },
         preview: true,
+        // * disable sending emails in development/test env
+        options: {
+          send: false,
+        },
+
         template: {
           dir: join(__dirname, 'templates/mailers'),
           adapter: new HandlebarsAdapter({ t: i18n.hbsHelper }),
