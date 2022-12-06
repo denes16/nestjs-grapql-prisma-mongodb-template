@@ -40,4 +40,10 @@ export class UserMaxAggregateInput {
 
     @HideField()
     modelName?: true;
+
+    @HideField()
+    authProvider?: true;
+
+    @HideField()
+    authProviderId?: true;
 }

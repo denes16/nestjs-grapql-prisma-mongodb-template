@@ -35,12 +35,19 @@ type Query {
 }
 
 type Mutation {
+  updateUser(updateUserInput: UpdateUserInput!): User!
   signUp(signUpInput: SignUpInput!): AuthResponse!
   signIn(signInInput: SignInInput!): AuthResponse!
   refreshAccessToken: AuthResponse!
   forgotPassword(forgotPasswordInput: ForgotPasswordInput!): ForgotPasswordResponse!
   verifyResetPasswordToken(resetPasswordTokenInput: ResetPasswordTokenInput!): ForgotPasswordResponse!
   resetPassword(resetPasswordInput: ResetPasswordInput!): ForgotPasswordResponse!
+}
+
+input UpdateUserInput {
+  id: ID!
+  firstName: String!
+  lastName: String!
 }
 
 input SignUpInput {

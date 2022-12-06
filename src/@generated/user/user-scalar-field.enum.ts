@@ -12,7 +12,9 @@ export enum UserScalarFieldEnum {
     createdAt = "createdAt",
     updatedAt = "updatedAt",
     isActive = "isActive",
-    modelName = "modelName"
+    modelName = "modelName",
+    authProvider = "authProvider",
+    authProviderId = "authProviderId"
 }
 
 

@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { HideField } from '@nestjs/graphql';
+import { AuthProvider } from '../prisma/auth-provider.enum';
 
 @ObjectType()
 export class UserMaxAggregate {
@@ -40,4 +41,10 @@ export class UserMaxAggregate {
 
     @HideField()
     modelName?: string;
+
+    @HideField()
+    authProvider?: keyof typeof AuthProvider;
+
+    @HideField()
+    authProviderId?: string;
 }
