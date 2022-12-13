@@ -22,7 +22,7 @@ export class AuthController {
   async googleAuth(@Req() req: any, @Param('type') type: string) {
     return '';
   }
-  @Get('callback/google')
+  @Get('callback/google/:type')
   @AuthenticationNotRequired()
   @UseGuards(AuthGuard('google'))
   @Redirect()

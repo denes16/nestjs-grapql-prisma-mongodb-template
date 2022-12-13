@@ -10,7 +10,8 @@ export class GoogleRedirectAuthGuard extends AuthGuard('google') {
     const req = context.switchToHttp().getRequest();
     let type = req.params.type ?? 'web';
     if (!['web', 'mobile'].includes(type)) type = 'web';
-    const redirectUrl = this.configService.get('GOOGLE_CALLBACK_URL');
+    const redirectUrl =
+      this.configService.get('GOOGLE_CALLBACK_URL') + '/' + type;
     return {
       callbackURL: redirectUrl,
     };
