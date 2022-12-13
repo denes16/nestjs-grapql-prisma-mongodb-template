@@ -24,10 +24,10 @@ export class UserCountAggregate {
     @HideField()
     password!: number;
 
-    @Field(() => Int, {nullable:false})
+    @HideField()
     resetPasswordToken!: number;
 
-    @Field(() => Int, {nullable:false})
+    @HideField()
     resetPasswordTokenExpires!: number;
 
     @Field(() => Int, {nullable:false})

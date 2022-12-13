@@ -8,6 +8,7 @@ import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthController } from './auth.controller';
 import { GoogleAccessStrategy } from './strategies/google-access.strategy';
+import { GoogleAccessTokenStrategy } from './strategies/google-access-token.strategy';
 
 @Module({
   providers: [
@@ -15,6 +16,7 @@ import { GoogleAccessStrategy } from './strategies/google-access.strategy';
     AuthService,
     JwtAccessStrategy,
     JwtRefreshStrategy,
+    GoogleAccessTokenStrategy,
     GoogleAccessStrategy,
     CaslAbilityFactoryService,
     ConfigService,

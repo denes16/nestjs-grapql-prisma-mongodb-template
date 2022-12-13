@@ -8,8 +8,6 @@ type User {
   lastName: String!
   email: String!
   language: String!
-  resetPasswordToken: String
-  resetPasswordTokenExpires: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
   isActive: Boolean!

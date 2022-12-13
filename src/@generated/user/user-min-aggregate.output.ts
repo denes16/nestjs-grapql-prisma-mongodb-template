@@ -24,10 +24,10 @@ export class UserMinAggregate {
     @HideField()
     password?: string;
 
-    @Field(() => String, {nullable:true})
+    @HideField()
     resetPasswordToken?: string;
 
-    @Field(() => Date, {nullable:true})
+    @HideField()
     resetPasswordTokenExpires?: Date | string;
 
     @Field(() => Date, {nullable:true})

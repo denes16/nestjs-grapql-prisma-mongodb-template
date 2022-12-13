@@ -3,5 +3,4 @@
   "badCredentials": "Email or password is incorrect",
   "userNotFound": "User not found",
   "internalServerError": "Internal server error"
-  "userNotFound": "userNotFound"
 }
