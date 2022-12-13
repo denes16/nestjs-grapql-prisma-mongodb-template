@@ -36,6 +36,9 @@ describe('UsersResolver', () => {
   it('should call usersService.update on update', () => {
     const updateSpy = jest.spyOn(usersService, 'update');
     resolver.updateUser(CurrentUserMock.user, CurrentUserMock);
-    expect(updateSpy).toHaveBeenCalledWith('1', CurrentUserMock);
+    expect(updateSpy).toHaveBeenCalledWith(
+      CurrentUserMock.user,
+      CurrentUserMock,
+    );
   });
 });

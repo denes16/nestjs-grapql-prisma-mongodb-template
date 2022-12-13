@@ -169,7 +169,7 @@ export class AuthService {
     if (!user) {
       throw new ForbiddenException('errors.invalidToken');
     }
-    if (user.resetPasswordTokenExpires < new Date()) {
+    if (new Date() > (user.resetPasswordTokenExpires ?? 0)) {
       throw new ForbiddenException('errors.tokenExpired');
     }
     return {
