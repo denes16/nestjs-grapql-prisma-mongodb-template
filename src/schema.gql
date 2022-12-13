@@ -38,8 +38,8 @@ type Mutation {
   signIn(signInInput: SignInInput!): AuthResponse!
   refreshAccessToken: AuthResponse!
   forgotPassword(forgotPasswordInput: ForgotPasswordInput!): ForgotPasswordResponse!
-  verifiedResetPasswordToken(resetPasswordTokenInput: ResetPasswordTokenInput!): ForgotPasswordResponse!
-  resetPassword(resetPasswordInput: ResetPasswordInput!): Boolean!
+  verifyResetPasswordToken(resetPasswordTokenInput: ResetPasswordTokenInput!): ForgotPasswordResponse!
+  resetPassword(resetPasswordInput: ResetPasswordInput!): ForgotPasswordResponse!
 }
 
 input UpdateUserInput {

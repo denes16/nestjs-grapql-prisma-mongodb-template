@@ -158,7 +158,7 @@ export class AuthService {
     };
   }
 
-  async verifiedResetPasswordToken(
+  async verifyResetPasswordToken(
     resetPasswordTokenInput: ResetPasswordTokenInput,
   ): Promise<ForgotPasswordResponse> {
     const user = await this.prismaService.user.findUnique({
@@ -197,7 +197,7 @@ export class AuthService {
   async resetPassword(
     resetPasswordInput: ResetPasswordInput,
   ): Promise<ForgotPasswordResponse> {
-    const { email, ...rest } = await this.verifiedResetPasswordToken({
+    const { email, ...rest } = await this.verifyResetPasswordToken({
       token: resetPasswordInput.token,
     });
     const user = await this.prismaService.user.update({

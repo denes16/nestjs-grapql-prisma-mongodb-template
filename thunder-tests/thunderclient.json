@@ -31,7 +31,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-10-05T02:49:23.594Z",
-    "modified": "2022-11-28T13:40:16.510Z",
+    "modified": "2022-12-06T05:31:36.631Z",
     "headers": [],
     "params": [],
     "body": {
@@ -40,7 +40,7 @@
       "form": [],
       "graphql": {
         "query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
-        "variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"Password123\"\n  }\n}"
+        "variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"PASSWORDD1\"\n  }\n}"
       }
     },
     "tests": [
@@ -132,7 +132,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-12-06T02:18:36.598Z",
-    "modified": "2022-12-06T02:30:50.323Z",
+    "modified": "2022-12-06T05:21:58.219Z",
     "headers": [],
     "params": [],
     "body": {
@@ -140,7 +140,7 @@
       "raw": "",
       "form": [],
       "graphql": {
-        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\n  forgotPassword(forgotPasswordInput: $forgotPasswordInput) {\n    email\n  }\n}",
+        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\n\tforgotPassword(forgotPasswordInput: $forgotPasswordInput) {\n\t\temail\n\t}\n}",
         "variables": "{\n    \"forgotPasswordInput\": {\n        \"email\": \"email1@email.com\"\n    }\n}"
       }
     },
@@ -163,8 +163,31 @@
       "raw": "",
       "form": [],
       "graphql": {
-        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\n\tverifiedResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\n\t\temail\n\t}\n}",
-        "variables": "{\n    \"resetPasswordTokenInput\": {\n        \"token\": \"a78e51eb6b08d98f9b81a3c4886ec40cbde8b1f054983275a8c3ccd4c27d1a0eef21a99bcd6cdcd2f599c3e20d8db6633272f6de82d0bf49c3adbbe3d85aef19b70098ad1fe9\"\n    }\n}"
+        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\n\tverifyResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"resetPasswordTokenInput\": {\n        \"token\": \"2915bcfb6414fd9541a9cc7d24eb80ccd8ef55ad9ef432987d805e4e7e8c0f54df5b70fec53cdc30dcfdf977be8d044a819a5cff15349d7c6e1ef7f33291f23ca3c89df56514\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "a142e661-9ab1-409b-93e4-9ad6c227ea37",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Reset Password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-12-06T03:29:23.317Z",
+    "modified": "2022-12-06T05:28:14.972Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation resetPassword($resetPasswordInput:ResetPasswordInput!) {\n\tresetPassword(resetPasswordInput: $resetPasswordInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"resetPasswordInput\": {\n        \"token\": \"2915bcfb6414fd9541a9cc7d24eb80ccd8ef55ad9ef432987d805e4e7e8c0f54df5b70fec53cdc30dcfdf977be8d044a819a5cff15349d7c6e1ef7f33291f23ca3c89df56514\",\n        \"password\": \"PASSWORDD1\"\n    }\n}"
       }
     },
     "tests": []

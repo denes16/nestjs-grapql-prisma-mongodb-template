@@ -42,15 +42,15 @@ export class AuthResolver {
 
   @AuthenticationNotRequired()
   @Mutation(() => ForgotPasswordResponse)
-  async verifiedResetPasswordToken(
+  async verifyResetPasswordToken(
     @Args('resetPasswordTokenInput')
     resetPasswordTokenInput: ResetPasswordTokenInput,
   ) {
-    return this.authService.verifiedResetPasswordToken(resetPasswordTokenInput);
+    return this.authService.verifyResetPasswordToken(resetPasswordTokenInput);
   }
 
   @AuthenticationNotRequired()
-  @Mutation(() => Boolean)
+  @Mutation(() => ForgotPasswordResponse)
   async resetPassword(
     @Args('resetPasswordInput') resetPasswordInput: ResetPasswordInput,
   ) {
