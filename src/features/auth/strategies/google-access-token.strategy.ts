@@ -5,11 +5,14 @@ import { CurrentUser } from '../types/current-user.type';
 import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
 import { accessibleBy } from '@casl/prisma';
 import { ConfigService } from '@nestjs/config';
-import { Strategy } from 'passport-google-oauth20';
+import { Strategy } from 'passport-google-token';
 import { PrismaService } from '../../../core/services/prisma/prisma.service';
 
 @Injectable()
-export class GoogleAccessStrategy extends PassportStrategy(Strategy, 'google') {
+export class GoogleAccessTokenStrategy extends PassportStrategy(
+  Strategy,
+  'google-token',
+) {
   constructor(
     private readonly caslAbilityFactoryService: CaslAbilityFactoryService,
     private configService: ConfigService,
