@@ -38,7 +38,6 @@ export class AuthService {
     const existingUser = await this.prismaService.user.findFirst({
       where: {
         email: signUpInput.email,
-        authProvider: AuthProvider.LOCAL,
       },
       select: {
         id: true,

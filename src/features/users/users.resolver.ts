@@ -20,6 +20,13 @@ export class UsersResolver {
   //   return this.usersService.findAll();
   // }
 
+  @Query(() => User, { name: 'me' })
+  me(
+    @Args('id', { type: () => ID }) id: string,
+    @GetCurrentUser() currentUser: CurrentUser,
+  ) {
+    return this.usersService.findOne(currentUser.id, currentUser);
+  }
   @Query(() => User, { name: 'user' })
   findOne(
     @Args('id', { type: () => ID }) id: string,
