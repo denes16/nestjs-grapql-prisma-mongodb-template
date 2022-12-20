@@ -29,6 +29,7 @@ type ForgotPasswordResponse {
 }
 
 type Query {
+  me(id: ID!): User!
   user(id: ID!): User!
 }
 
