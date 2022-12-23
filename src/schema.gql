@@ -62,7 +62,7 @@ input SignInInput {
 }
 
 input ForgotPasswordInput {
-  email: String!
+  email: String
 }
 
 input ResetPasswordTokenInput {

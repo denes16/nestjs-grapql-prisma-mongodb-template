@@ -129,6 +129,11 @@ export class AuthService {
   async forgotPassword(
     forgotPasswordInput: ForgotPasswordInput,
   ): Promise<ForgotPasswordResponse> {
+    if (!forgotPasswordInput.email) {
+      return {
+        email: null,
+      };
+    }
     const userUpdated = await this.generateResetPasswordToken(
       forgotPasswordInput.email,
     );
@@ -179,6 +184,12 @@ export class AuthService {
   private async generateResetPasswordToken(
     email: string,
   ): Promise<User | null> {
+    const existsUser = await this.prismaService.user.findUnique({
+      where: { email },
+    });
+    if (!existsUser) {
+      return null;
+    }
     const token = this.generateToken(70);
     return await this.prismaService.user.update({
       where: { email },
