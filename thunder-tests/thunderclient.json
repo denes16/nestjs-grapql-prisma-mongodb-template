@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-05T02:49:23.593Z",
-    "modified": "2022-10-05T02:49:29.804Z",
+    "modified": "2022-12-23T03:59:04.996Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,7 +17,7 @@
       "form": [],
       "graphql": {
         "query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
-        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"User\",\n        \"lastName\": \"3\",\n        \"email\": \"email3@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
       }
     },
     "tests": []
