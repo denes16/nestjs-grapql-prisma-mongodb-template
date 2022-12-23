@@ -1,9 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsEmail } from 'class-validator';
+import { IsEmail, IsOptional } from 'class-validator';
 
 @InputType()
 export class ForgotPasswordInput {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
+  @IsOptional()
   @IsEmail()
-  email: string;
+  email?: string;
 }
