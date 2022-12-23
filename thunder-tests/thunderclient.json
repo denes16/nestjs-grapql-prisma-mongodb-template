@@ -191,5 +191,27 @@
       }
     },
     "tests": []
+  },
+  {
+    "_id": "1bfcb63b-5b56-4484-b7ad-2d2a11dad7a6",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "7ff2f477-1ab9-4c71-a48f-1f3eb766610d",
+    "name": "Me",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-12-23T02:10:30.981Z",
+    "modified": "2022-12-23T02:17:52.182Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query Me {\n  me {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}"
+      }
+    },
+    "tests": []
   }
 ]

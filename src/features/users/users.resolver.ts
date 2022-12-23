@@ -21,10 +21,7 @@ export class UsersResolver {
   // }
 
   @Query(() => User, { name: 'me' })
-  me(
-    @Args('id', { type: () => ID }) id: string,
-    @GetCurrentUser() currentUser: CurrentUser,
-  ) {
+  me(@GetCurrentUser() currentUser: CurrentUser) {
     return this.usersService.findOne(currentUser.id, currentUser);
   }
   @Query(() => User, { name: 'user' })
