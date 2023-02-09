@@ -5,7 +5,7 @@ import { CurrentUser } from '../types/current-user.type';
 import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
 import { accessibleBy } from '@casl/prisma';
 import { ConfigService } from '@nestjs/config';
-import { Strategy } from 'passport-google-token';
+import * as Strategy from 'passport-google-id-token';
 import { PrismaService } from '../../../core/services/prisma/prisma.service';
 
 @Injectable()
@@ -35,15 +35,12 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       session: false,
     };
   }
-  async validate(
-    accessToken: string,
-    refreshToken: string,
-    profile: any,
-  ): Promise<CurrentUser> {
-    const userId = profile.id;
-    const email = profile.emails[0].value;
-    const firstName = profile.name.givenName;
-    const lastName = profile.name.familyName ?? '';
+  async validate(parsedToken: any, googleId: string): Promise<CurrentUser> {
+    const profile = parsedToken.payload;
+    const userId = googleId;
+    const email = profile.email;
+    const firstName = profile.name ?? '';
+    const lastName = profile.family_name ?? '';
     let user = await this.prismaService.user.findFirst({
       where: {
         authProvider: AuthProvider.GOOGLE,
@@ -76,8 +73,8 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       id: user.id,
       user: user,
       ability,
-      authAccessToken: accessToken,
-      authRefreshToken: refreshToken,
+      authAccessToken: '',
+      authRefreshToken: '',
       getAccessibleWhereInput(subject, action?) {
         const subjectName =
           typeof subject === 'string' ? subject : subject.modelName;
