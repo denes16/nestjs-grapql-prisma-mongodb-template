@@ -44,6 +44,7 @@
     "graphql-ws": "^5.11.2",
     "handlebars": "^4.7.7",
     "nestjs-i18n": "^9.2.0",
+    "node-fetch": "^2.6.9",
     "nodemailer": "^6.8.0",
     "passport-google-id-token": "^0.4.7",
     "passport-google-oauth20": "^2.0.0",

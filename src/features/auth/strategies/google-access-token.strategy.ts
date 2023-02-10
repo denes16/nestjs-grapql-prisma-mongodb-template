@@ -7,12 +7,15 @@ import { accessibleBy } from '@casl/prisma';
 import { ConfigService } from '@nestjs/config';
 import * as Strategy from 'passport-google-id-token';
 import { PrismaService } from '../../../core/services/prisma/prisma.service';
+import fetch from 'node-fetch';
 
 @Injectable()
 export class GoogleAccessTokenStrategy extends PassportStrategy(
   Strategy,
   'google-token',
 ) {
+  cachedCerts: any;
+  cachedCertsExpiresAt: Date | undefined;
   constructor(
     private readonly caslAbilityFactoryService: CaslAbilityFactoryService,
     private configService: ConfigService,
@@ -26,6 +29,28 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       prompt: 'consent',
       scope: ['email', 'profile'],
       session: false,
+      getGoogleCerts: async (kid, cb) => {
+        if (
+          !this.cachedCerts ||
+          !this.cachedCertsExpiresAt ||
+          this.cachedCertsExpiresAt < new Date()
+        ) {
+          const response = await fetch(
+            'https://www.googleapis.com/oauth2/v1/certs',
+          );
+          this.cachedCerts = await response.json();
+          this.cachedCertsExpiresAt = new Date(
+            new Date().getTime() +
+              Number(
+                response.headers
+                  .get('cache-control')
+                  ?.match(/max-age=(\d+)/)?.[1] ?? 0,
+              ) *
+                1000,
+          );
+        }
+        cb(null, this.cachedCerts[kid]);
+      },
     });
   }
   authorizationParams(): { [key: string]: any } {
