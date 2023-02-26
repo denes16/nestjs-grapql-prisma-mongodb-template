@@ -20,6 +20,10 @@ export class UsersResolver {
   //   return this.usersService.findAll();
   // }
 
+  @Query(() => User, { name: 'me' })
+  me(@GetCurrentUser() currentUser: CurrentUser) {
+    return this.usersService.findOne(currentUser.id, currentUser);
+  }
   @Query(() => User, { name: 'user' })
   findOne(
     @Args('id', { type: () => ID }) id: string,
@@ -28,10 +32,13 @@ export class UsersResolver {
     return this.usersService.findOne(id, currentUser);
   }
 
-  // @Mutation(() => User)
-  // updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-  //   return this.usersService.update(updateUserInput.id, updateUserInput);
-  // }
+  @Mutation(() => User)
+  updateUser(
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+    @GetCurrentUser() currentUser: CurrentUser,
+  ) {
+    return this.usersService.update(updateUserInput, currentUser);
+  }
 
   // @Mutation(() => User)
   // removeUser(@Args('id', { type: () => Int }) id: number) {

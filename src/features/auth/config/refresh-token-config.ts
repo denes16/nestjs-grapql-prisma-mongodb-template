@@ -1,5 +1,9 @@
 import { JwtSignOptions } from '@nestjs/jwt';
-export const RefreshTokenConfig: JwtSignOptions = {
-  secret: process.env.REFRESH_TOKEN_SECRET,
-  expiresIn: process.env.REFRESH_TOKEN_EXPIRES_IN,
-};
+import { ConfigService } from '@nestjs/config';
+
+export const GetRefreshTokenConfig = (
+  configService: ConfigService,
+): JwtSignOptions => ({
+  secret: configService.get('REFRESH_TOKEN_SECRET'),
+  expiresIn: configService.get('REFRESH_TOKEN_EXPIRES_IN'),
+});

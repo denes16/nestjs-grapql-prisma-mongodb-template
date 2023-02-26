@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-05T02:49:23.593Z",
-    "modified": "2022-10-05T02:49:29.804Z",
+    "modified": "2022-12-23T03:59:04.996Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,7 +17,7 @@
       "form": [],
       "graphql": {
         "query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
-        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"User\",\n        \"lastName\": \"3\",\n        \"email\": \"email3@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
       }
     },
     "tests": []
@@ -31,7 +31,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-10-05T02:49:23.594Z",
-    "modified": "2022-10-05T02:58:49.423Z",
+    "modified": "2022-12-06T05:31:36.631Z",
     "headers": [],
     "params": [],
     "body": {
@@ -40,7 +40,7 @@
       "form": [],
       "graphql": {
         "query": "mutation SignIn($signInInput: SignInInput!) {\n  signIn(signInInput: $signInInput) {\n    accessToken\n    refreshToken\n    user {\n      id\n      firstName\n      lastName\n      email\n      language\n      createdAt\n      updatedAt\n      isActive\n    }\n  }\n}",
-        "variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"Password123\"\n  }\n}"
+        "variables": "{\n  \"signInInput\": {\n    \"email\": \"email1@email.com\",\n    \"password\": \"PASSWORDD1\"\n  }\n}"
       }
     },
     "tests": [
@@ -96,9 +96,22 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-10-05T02:49:23.596Z",
-    "modified": "2022-10-05T02:55:22.367Z",
+    "modified": "2022-12-05T23:07:13.340Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "access_token",
+        "value": "ya29.a0AeTM1ie2VVc65srMIJGCTAx-oLPBe935fIcH73Orf1mEF6NAsvU8bWDhvAWaDG4qLjh3CxLj4mtKWWU4R30yKTA2nsizd_ux3P6_0E3kye0YZDlEwQ5sU4qQmlbh91temYJvfdbw-OvMNfJNfgRdRdjGqeaiaCgYKAa4SARISFQHWtWOm5CudgoWFCqotAEuRRsm2jQ0163",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "refresh_token",
+        "value": "1//0fQmVdw22nEK1CgYIARAAGA8SNwF-L9IrbsrWUDn2PNDByZwbG9TH9BitckMEAagQAucoqnNTo2tYGVpU5TKyiZ9LBqilGbc3vwY",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
     "body": {
       "type": "graphql",
       "raw": "",
@@ -106,6 +119,97 @@
       "graphql": {
         "query": "query User($userId: ID!) {\n  user(id: $userId) {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}",
         "variables": "{\n  \"userId\": \"{{currentUserId}}\"\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "16ca5435-da3b-4130-9d60-e9c1a3d00884",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Forgot Password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-12-06T02:18:36.598Z",
+    "modified": "2022-12-06T05:21:58.219Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation ForgotPassword($forgotPasswordInput: ForgotPasswordInput!) {\n\tforgotPassword(forgotPasswordInput: $forgotPasswordInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"forgotPasswordInput\": {\n        \"email\": \"email1@email.com\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "de2f5db2-ec6b-4541-be06-53a8afa20030",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Validate token forgot password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 60000,
+    "created": "2022-12-06T02:20:12.747Z",
+    "modified": "2022-12-06T03:09:17.763Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation ResetPasswordToken($resetPasswordTokenInput: ResetPasswordTokenInput!) {\n\tverifyResetPasswordToken(resetPasswordTokenInput: $resetPasswordTokenInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"resetPasswordTokenInput\": {\n        \"token\": \"2915bcfb6414fd9541a9cc7d24eb80ccd8ef55ad9ef432987d805e4e7e8c0f54df5b70fec53cdc30dcfdf977be8d044a819a5cff15349d7c6e1ef7f33291f23ca3c89df56514\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "a142e661-9ab1-409b-93e4-9ad6c227ea37",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "f04e2325-428a-4a0d-902a-1e109b54236c",
+    "name": "Reset Password",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-12-06T03:29:23.317Z",
+    "modified": "2022-12-06T05:28:14.972Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "mutation resetPassword($resetPasswordInput:ResetPasswordInput!) {\n\tresetPassword(resetPasswordInput: $resetPasswordInput) {\n\t\temail\n\t}\n}",
+        "variables": "{\n    \"resetPasswordInput\": {\n        \"token\": \"2915bcfb6414fd9541a9cc7d24eb80ccd8ef55ad9ef432987d805e4e7e8c0f54df5b70fec53cdc30dcfdf977be8d044a819a5cff15349d7c6e1ef7f33291f23ca3c89df56514\",\n        \"password\": \"PASSWORDD1\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "1bfcb63b-5b56-4484-b7ad-2d2a11dad7a6",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "7ff2f477-1ab9-4c71-a48f-1f3eb766610d",
+    "name": "Me",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-12-23T02:10:30.981Z",
+    "modified": "2022-12-23T02:17:52.182Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query Me {\n  me {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}"
       }
     },
     "tests": []

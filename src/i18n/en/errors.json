@@ -1,5 +1,6 @@
 {
   "emailAlreadyExists": "Email already exists",
   "badCredentials": "Email or password is incorrect",
+  "internalServerError": "Internal server error",
   "userNotFound": "userNotFound"
 }

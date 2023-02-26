@@ -8,6 +8,8 @@ generator client {
 generator nestgraphql {
   provider = "node node_modules/prisma-nestjs-graphql"
   output   = "../src/@generated"
+  useInputType_CreateOne_data = "matcher:*UncheckedCreateInput"
+  noAtomicOperations          = true
 }
 
 datasource db {
@@ -23,9 +25,25 @@ model User {
   language  String   @default("en")
   /// @HideField()
   password  String?
+  /// @HideField()
+  resetPasswordToken String? @unique
+  /// @HideField()
+  resetPasswordTokenExpires DateTime?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   isActive  Boolean  @default(true)
   /// @HideField({ output: true, input: true })
   modelName String   @default("User")
+
+
+  /// @HideField({ output: true, input: true })
+  authProvider AuthProvider @default(LOCAL)
+
+  /// @HideField({ output: true, input: true })
+  authProviderId String?
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
 }

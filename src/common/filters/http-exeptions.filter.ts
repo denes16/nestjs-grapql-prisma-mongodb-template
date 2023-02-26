@@ -38,7 +38,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
         .json({ statusCode, message: translatedMessage });
     } else {
       if (isGraphql) {
-        throw exception.constructor(exception.message);
+        throw exception;
       }
       response.status(statusCode).json(message);
     }
