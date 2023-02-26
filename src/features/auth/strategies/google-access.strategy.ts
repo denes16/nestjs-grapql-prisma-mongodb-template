@@ -1,5 +1,5 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { AuthProvider, User } from '@prisma/client';
 import { CurrentUser } from '../types/current-user.type';
 import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
@@ -48,6 +48,14 @@ export class GoogleAccessStrategy extends PassportStrategy(Strategy, 'google') {
       },
     });
     if (!user) {
+      const existingUser = await this.prismaService.user.findFirst({
+        where: {
+          email,
+        },
+      });
+      if (existingUser) {
+        throw new ConflictException('errors.emailAlreadyExists');
+      }
       user = await this.prismaService.user.create({
         data: {
           email,

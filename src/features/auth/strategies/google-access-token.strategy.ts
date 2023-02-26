@@ -1,18 +1,21 @@
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { AuthProvider, User } from '@prisma/client';
 import { CurrentUser } from '../types/current-user.type';
 import { CaslAbilityFactoryService } from '../casl-ability-factory.service';
 import { accessibleBy } from '@casl/prisma';
 import { ConfigService } from '@nestjs/config';
-import { Strategy } from 'passport-google-token';
+import * as Strategy from 'passport-google-id-token';
 import { PrismaService } from '../../../core/services/prisma/prisma.service';
+import fetch from 'node-fetch';
 
 @Injectable()
 export class GoogleAccessTokenStrategy extends PassportStrategy(
   Strategy,
   'google-token',
 ) {
+  cachedCerts: any;
+  cachedCertsExpiresAt: Date | undefined;
   constructor(
     private readonly caslAbilityFactoryService: CaslAbilityFactoryService,
     private configService: ConfigService,
@@ -26,6 +29,28 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       prompt: 'consent',
       scope: ['email', 'profile'],
       session: false,
+      getGoogleCerts: async (kid, cb) => {
+        if (
+          !this.cachedCerts ||
+          !this.cachedCertsExpiresAt ||
+          this.cachedCertsExpiresAt < new Date()
+        ) {
+          const response = await fetch(
+            'https://www.googleapis.com/oauth2/v1/certs',
+          );
+          this.cachedCerts = await response.json();
+          this.cachedCertsExpiresAt = new Date(
+            new Date().getTime() +
+              Number(
+                response.headers
+                  .get('cache-control')
+                  ?.match(/max-age=(\d+)/)?.[1] ?? 0,
+              ) *
+                1000,
+          );
+        }
+        cb(null, this.cachedCerts[kid]);
+      },
     });
   }
   authorizationParams(): { [key: string]: any } {
@@ -35,15 +60,12 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       session: false,
     };
   }
-  async validate(
-    accessToken: string,
-    refreshToken: string,
-    profile: any,
-  ): Promise<CurrentUser> {
-    const userId = profile.id;
-    const email = profile.emails[0].value;
-    const firstName = profile.name.givenName;
-    const lastName = profile.name.familyName ?? '';
+  async validate(parsedToken: any, googleId: string): Promise<CurrentUser> {
+    const profile = parsedToken.payload;
+    const userId = googleId;
+    const email = profile.email;
+    const firstName = profile.name ?? '';
+    const lastName = profile.family_name ?? '';
     let user = await this.prismaService.user.findFirst({
       where: {
         authProvider: AuthProvider.GOOGLE,
@@ -51,6 +73,14 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       },
     });
     if (!user) {
+      const existingUser = await this.prismaService.user.findFirst({
+        where: {
+          email,
+        },
+      });
+      if (existingUser) {
+        throw new ConflictException('errors.emailAlreadyExists');
+      }
       user = await this.prismaService.user.create({
         data: {
           email,
@@ -68,8 +98,8 @@ export class GoogleAccessTokenStrategy extends PassportStrategy(
       id: user.id,
       user: user,
       ability,
-      authAccessToken: accessToken,
-      authRefreshToken: refreshToken,
+      authAccessToken: '',
+      authRefreshToken: '',
       getAccessibleWhereInput(subject, action?) {
         const subjectName =
           typeof subject === 'string' ? subject : subject.modelName;

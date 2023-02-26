@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-05T02:49:23.593Z",
-    "modified": "2022-10-05T02:49:29.804Z",
+    "modified": "2022-12-23T03:59:04.996Z",
     "headers": [],
     "params": [],
     "body": {
@@ -17,7 +17,7 @@
       "form": [],
       "graphql": {
         "query": "  mutation SignUp($signUpInput: SignUpInput!) {\n    signUp(signUpInput: $signUpInput) {\n      accessToken\n      refreshToken\n      user {\n        id\n        firstName\n        lastName\n        email\n        language\n        createdAt\n        updatedAt\n        isActive\n      }\n    }\n  }",
-        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"Denes\",\n        \"lastName\": \"Mijangos\",\n        \"email\": \"email1@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
+        "variables": "{\n    \"signUpInput\": {\n        \"firstName\": \"User\",\n        \"lastName\": \"3\",\n        \"email\": \"email3@email.com\",\n        \"password\": \"Password123\"\n    }\n}"
       }
     },
     "tests": []
@@ -188,6 +188,28 @@
       "graphql": {
         "query": "mutation resetPassword($resetPasswordInput:ResetPasswordInput!) {\n\tresetPassword(resetPasswordInput: $resetPasswordInput) {\n\t\temail\n\t}\n}",
         "variables": "{\n    \"resetPasswordInput\": {\n        \"token\": \"2915bcfb6414fd9541a9cc7d24eb80ccd8ef55ad9ef432987d805e4e7e8c0f54df5b70fec53cdc30dcfdf977be8d044a819a5cff15349d7c6e1ef7f33291f23ca3c89df56514\",\n        \"password\": \"PASSWORDD1\"\n    }\n}"
+      }
+    },
+    "tests": []
+  },
+  {
+    "_id": "1bfcb63b-5b56-4484-b7ad-2d2a11dad7a6",
+    "colId": "8eea2ee9-042d-4e7d-83de-9f0c371220c0",
+    "containerId": "7ff2f477-1ab9-4c71-a48f-1f3eb766610d",
+    "name": "Me",
+    "url": "{{graphqlUrl}}",
+    "method": "POST",
+    "sortNum": 80000,
+    "created": "2022-12-23T02:10:30.981Z",
+    "modified": "2022-12-23T02:17:52.182Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "graphql",
+      "raw": "",
+      "form": [],
+      "graphql": {
+        "query": "query Me {\n  me {\n    id\n    firstName\n    lastName\n    email\n    language\n    createdAt\n    updatedAt\n    isActive\n  }\n}"
       }
     },
     "tests": []
